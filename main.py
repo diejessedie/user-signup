@@ -22,6 +22,8 @@ def valid_email(email):
         valid_email.error = ''
     else:
         valid_email.error = ''
+
+    return valid_email.error
 def valid_usrnm(usrnm):
     if ' ' in usrnm or 2 < len(usrnm) < 21:
         valid_usrnm.error = 'Invalid username, must be 3-20 characters in length, no spaces.'
@@ -62,9 +64,9 @@ def validate_signup():
     password = request.form['psw']
     confirm_psw = request.form['psw-repeat']
 
-    usrnm_error = ''
-    email_error = ''
-    psw_error = ''
-    confirm_error = ''
+    usrnm_error = valid_usrnm(username)
+    email_error = valid_email(email)
+    psw_error = valid_psswrd(password)
+    confirm_error = psswrd_match(password, confirm_psw)
 
 app.run()
